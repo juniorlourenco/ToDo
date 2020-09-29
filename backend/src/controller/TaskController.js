@@ -114,6 +114,7 @@ class TaskController{
             .catch(error => {
                 return res.status(500).json(error);
             });
+    }
 } 
 
 module.exports = new TaskController();
