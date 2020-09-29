@@ -35,7 +35,7 @@ class TaskController{
     }
     
     async all(req,res) {
-        await TaskModel.find({ macaddress: {'$in': req.body.macaddress }})
+        await TaskModel.find({ macaddress: {'$in': req.params.macaddress }})
                 .sort('when')
                 .then(response => {
                     return res.status(200).json(response);
