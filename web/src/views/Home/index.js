@@ -1,9 +1,14 @@
 import React from 'react';
+import * as S from './styles';
+//nossos componentes
+import Header from '../../components/Header';
 
 function Home() {
   return (
-    <h1>Você está na home</h1>
-  );
+  <S.Container>
+  <Header/>
+  </S.Container>
+  )
 }
 
 export default Home;
