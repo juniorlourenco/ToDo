@@ -26,6 +26,9 @@ display: flex;
 align-items: center;
 justify-content: center;
 flex-direction: column;
+img {
+    margin-top: 10px;
+}
 `
 export const BottomCard = styled.div`
 width: 100%;

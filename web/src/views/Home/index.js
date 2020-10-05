@@ -1,5 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import * as S from './styles';
+
+import api from '../../services/api';
+
 //nossos componentes
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
@@ -7,8 +10,21 @@ import FilterCard from '../../components/FilterCard';
 import TaskCard from '../../components/TaskCard';
 
 function Home() {
-  const [filterActived, setFilterActived] = useState();
+  const [filterActived, setFilterActived] = useState('today');
+  const [tasks, setTasks] = useState([]);
+
+  async function loadTasks() {
+    await api.get(`/task/filter/${filterActived}/1111111111F`)
+    .then(response => {
+      setTasks(response.data)
+    })
+  }
   
+  useEffect(() => {
+    loadTasks();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [filterActived])
+
   return (
   <S.Container>
     <Header/>
@@ -36,16 +52,11 @@ function Home() {
     </S.Title>
 
     <S.Content>
+      {
+      tasks.map(t => (
       <TaskCard/>
-      <TaskCard/>
-      <TaskCard/>
-      <TaskCard/>
-      <TaskCard/>
-      <TaskCard/>
-      <TaskCard/>
-      <TaskCard/>
-      <TaskCard/>
-      <TaskCard/>
+      ))
+      }
     </S.Content>
 
     <Footer/>
